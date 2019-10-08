@@ -24,7 +24,7 @@ steps:
     Contents: '**'
     TargetFolder: '$(build.artifactstagingdirectory)'
     
-- task: PublishBuildArtifacts@1    
-  displayName: 'Publish Artifact: production'
+- task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'prd'
