@@ -12,6 +12,12 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+trigger:
+ branches:
+  include:
+  - dev
+  exclude:
+  - master
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
