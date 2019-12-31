@@ -12,22 +12,22 @@ trigger:
 pool: 
   vmImage: 'vs2017-win2016'
 
-name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Major).$(Minor).$(Patch)-$(tag)
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Major).$(Minor).$(Patch)-$(tag)
 
 variables:
   buildConfiguration: 'Release'
   MyRunNumber: '1.0.0-CI-$(Build.BuildNumber)'
   MyDate: '1.0.0-CI-$(Date:yyyyMMdd)$(Rev:.r)-$(tag)'
-  Revision: '$(Major).$(Minor).$(Patch)'
+  Version: '$(Major).$(Minor).$(Patch)-$(tag)'
 
 steps:
 - script: echo $(MyRunNumber) # display MyRunNumber
 - script: echo $(Build.BuildNumber) #display Run Number
 - script: echo $(MyDate) #display My Date
-- script: echo $(Revision) #display My Revision
+- script: echo $(Version) #display My Version
 
-- script: dotnet build --configuration $(buildConfiguration) /p:Version=1.0.1.$(env:Revision)-$(tag)
-  displayName: 'dotnet build $(buildConfiguration) /p:Version=1.0.1.$(Rev:.r)-$(tag)'
+- script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
+  displayName: 'dotnet build $(buildConfiguration) /p:Version=1.0.1.$(Version)'
 
 - task: CopyFiles@2
   inputs:
