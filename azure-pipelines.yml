@@ -18,12 +18,13 @@ variables:
   buildConfiguration: 'Release'
   MyRunNumber: '1.0.0-CI-$(Build.BuildNumber)'
   MyDate: '1.0.0-CI-$(Date:yyyyMMdd)$(Rev:.r)-$(tag)'
-  Revision: '$(Rev:.r)'
+  Revision: '$(Rev:r)'
 
 steps:
 - script: echo $(MyRunNumber) # display MyRunNumber
 - script: echo $(Build.BuildNumber) #display Run Number
 - script: echo $(MyDate) #display My Date
+- script: echo $(Revision) #display My Revision
 
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=1.0.1.$(env:Revision)-$(tag)
   displayName: 'dotnet build $(buildConfiguration) /p:Version=1.0.1.$(Rev:.r)-$(tag)'
