@@ -17,11 +17,12 @@ name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)
 variables:
   buildConfiguration: 'Release'
   MyRunNumber: '1.0.0-CI-$(Build.BuildNumber)'
-
+  MyDate: '1.0.0-CI-$(Date:yyyyMMdd)$(Rev:.r)-$(tag)'
 
 steps:
 - script: echo $(MyRunNumber) # display MyRunNumber
 - script: echo $(Build.BuildNumber) #display Run Number
+- script: echo $(MyDate) #display My Date
 
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
