@@ -24,8 +24,8 @@ steps:
 - script: echo $(Build.BuildNumber) #display Run Number
 - script: echo $(MyDate) #display My Date
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet build --configuration $(buildConfiguration) /p:Version=1.0.1.$(Rev:.r)-$(tag)
+  displayName: 'dotnet build $(buildConfiguration) /p:Version=1.0.1.$(Rev:.r)-$(tag)'
 
 - task: CopyFiles@2
   inputs:
