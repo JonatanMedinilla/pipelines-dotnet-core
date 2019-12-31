@@ -18,7 +18,7 @@ variables:
   buildConfiguration: 'Release'
   MyRunNumber: '1.0.0-CI-$(Build.BuildNumber)'
   MyDate: '1.0.0-CI-$(Date:yyyyMMdd)$(Rev:.r)-$(tag)'
-  Revision: '$(Rev:r)'
+  Revision: '$(Rev:.r)'
 
 steps:
 - script: echo $(MyRunNumber) # display MyRunNumber
