@@ -1,5 +1,6 @@
 # ASP.NET Core
 # Build and test ASP.NET Core projects targeting .NET Core.
+
 # Add steps that run tests, create a NuGet package, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
@@ -27,7 +28,7 @@ steps:
 - script: echo $(Version) #display My Version
 
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
-  displayName: 'dotnet build $(buildConfiguration) /p:Version=1.0.1.$(Version)'
+  displayName: 'dotnet build $(buildConfiguration) /p:Version=$(Version)'
 
 - task: CopyFiles@2
   inputs:
