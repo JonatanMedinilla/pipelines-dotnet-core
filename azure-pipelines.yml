@@ -20,7 +20,7 @@ variables:
   Version: '$(Major).$(Minor).$(Patch)-$(tag)'
 
 
-name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Version)
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Major).$(Minor).$(Patch)-$(tag)
 
 steps:
 - script: echo $(MyRunNumber) # display MyRunNumber
