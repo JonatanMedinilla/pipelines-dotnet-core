@@ -13,13 +13,14 @@ trigger:
 pool: 
   vmImage: 'vs2017-win2016'
 
-name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Major).$(Minor).$(Patch)-$(tag)
-
 variables:
   buildConfiguration: 'Release'
   MyRunNumber: '1.0.0-CI-$(Build.BuildNumber)'
   MyDate: '1.0.0-CI-$(Date:yyyyMMdd)$(Rev:.r)-$(tag)'
   Version: '$(Major).$(Minor).$(Patch)-$(tag)'
+
+
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Version)
 
 steps:
 - script: echo $(MyRunNumber) # display MyRunNumber
