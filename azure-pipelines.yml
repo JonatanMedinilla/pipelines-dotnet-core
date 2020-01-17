@@ -43,7 +43,7 @@ steps:
 - bash: | 
     API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/$(Build.Repository.ID)/commits/$(Build.Repository.ID)/changes?api-version=5.1" 
     echo $API_URL
-    curl GET -H "Content-Type: application/json" 
+    curl GET -H "Content-Type: application/json" "$API_URL"
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
   displayName: 'dotnet build $(buildConfiguration) /p:Version=$(Version)'
 
