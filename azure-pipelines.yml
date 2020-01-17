@@ -37,7 +37,7 @@ steps:
 - bash: echo $(Build.SourceVersion) Commit ID
 - bash: echo $(Build.Repository.ID) Repository Id
 - bash: | 
-    API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/$Build_Repository_ID/commits/$Build_SourceVersion}/changes?api-version=5.1" 
+    API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/$Build_Repository_ID/commits/$Build_SourceVersion/changes?api-version=5.1" 
     echo $API_URL
 
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
