@@ -40,6 +40,9 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
   displayName: 'dotnet build $(buildConfiguration) /p:Version=$(Version)'
 
+- bash: | 
+    API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI $SYSTEM_TEAMPROJECTID/_apis/git/repositories/$Build.Repository.ID/commits/$Build.SourceVersion/changes?api-version=5.1" 
+    echo $API_URL
 
 
 - task: CopyFiles@2
@@ -52,7 +55,5 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'prd'
 
-- bash: | 
-    API_URL="${SYSTEM_TEAMFOUNDATIONCOLLECTIONURI}${SYSTEM_TEAMPROJECTID}/_apis/git/repositories/${Build.Repository.ID}/commits/${Build.SourceVersion}/changes?api-version=5.1" 
-    echo $API_URL
+
 
