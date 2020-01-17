@@ -17,3 +17,18 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- task: DownloadBuildArtifacts@0
+  displayName: 'Download Package artifacts'
+  inputs:
+    buildType: 'specific'
+    project: '$(System.TeamProject)'
+    specificBuildWithTriggering: true
+    buildVersionToDownload: 'latestFromBranch'
+    branchName: '$(Build.SourceBranch)'
+    downloadType: 'single'
+    artifactName: 'prd'
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- script: echo $(System.DefaultWorkingDirectory)\[source alias] Source alias?
+- script: echo $(Release.Artifacts.{alias}.SourceVersion) Commit ID Artifact
