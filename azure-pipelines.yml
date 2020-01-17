@@ -35,6 +35,7 @@ steps:
 - script: echo $(Version) #display My Version
 - script: echo $(Version2) #display My Version2
 - script: echo $(Build.SourceVersion) Commit ID
+- script: echo $(Build.Repository.ID) Repository Id
 
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
   displayName: 'dotnet build $(buildConfiguration) /p:Version=$(Version)'
@@ -50,4 +51,8 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'prd'
+
+- bash: | 
+    API_URL="${SYSTEM_TEAMFOUNDATIONCOLLECTIONURI}${SYSTEM_TEAMPROJECTID}/_apis/git/repositories/${Build.Repository.ID}/commits/${Build.SourceVersion}/changes?api-version=5.1" 
+    echo $API_URL
 
