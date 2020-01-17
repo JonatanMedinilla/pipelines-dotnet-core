@@ -14,8 +14,6 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: echo $(Build.SourceVersion) Commit ID
-- script: echo $(Release.SourceVersion) Commit ID
-- script: echo $(Release.Artifacts.SourceVersion) Commit ID
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
