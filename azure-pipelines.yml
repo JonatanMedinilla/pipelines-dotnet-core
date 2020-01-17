@@ -34,10 +34,10 @@ steps:
 - script: echo $(MyDate) #display My Date
 - script: echo $(Version) #display My Version
 - script: echo $(Version2) #display My Version2
-- script: echo $(Build.SourceVersion) Commit ID
-- script: echo $(Build.Repository.ID) Repository Id
+- bash: echo $(Build.SourceVersion) Commit ID
+- bash: echo $(Build.Repository.ID) Repository Id
 - bash: | 
-    API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/$Build.Repository.ID/commits/$Build.SourceVersion/changes?api-version=5.1" 
+    API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/${Build.Repository.ID}/commits/{$Build.SourceVersion}/changes?api-version=5.1" 
     echo $API_URL
 
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
