@@ -31,9 +31,12 @@ steps:
 - script: echo $(MyDate) #display My Date
 - script: echo $(Version) #display My Version
 - script: echo $(Version2) #display My Version2
+- script: echo $(Build.SourceVersion) Commit ID
 
 - script: dotnet build --configuration $(buildConfiguration) /p:Version=$(Version)
   displayName: 'dotnet build $(buildConfiguration) /p:Version=$(Version)'
+
+
 
 - task: CopyFiles@2
   inputs:
@@ -44,3 +47,4 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'prd'
+
