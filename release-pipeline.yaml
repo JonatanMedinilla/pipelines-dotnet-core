@@ -23,6 +23,7 @@ steps:
   inputs:
     buildType: 'specific'
     project: '$(System.TeamProject)'
+    pipeline: 'JonatanMedinilla.pipelines-dotnet-core'
     specificBuildWithTriggering: true
     buildVersionToDownload: 'latestFromBranch'
     branchName: '$(Build.SourceBranch)'
