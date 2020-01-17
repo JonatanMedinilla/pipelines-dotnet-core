@@ -31,5 +31,4 @@ steps:
     artifactName: 'prd'
     downloadPath: '$(System.ArtifactsDirectory)'
 
-- script: echo $(System.DefaultWorkingDirectory)\[source alias] Source alias?
-- script: echo $(Release.Artifacts.{alias}.SourceVersion) Commit ID Artifact
+- script: echo $(Release.Artifacts.prd.SourceVersion) Commit ID Artifact
