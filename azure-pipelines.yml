@@ -26,7 +26,7 @@ variables:
   Pat: $[counter(format('{0}.{1}', variables['Maj'], variables['Min']), 0)]
   Version2: '$(Maj).$(Min).$(Pat)-$(tag)'
   AsaQuery: 'SELECT {0} FROM {0}-{0}-{0}-{0}'
-  TestFormat: $[format(variables['AsaQuery'], 'Test')]
+  TestFormat: $[format(variables['query'], 'Column','Table', 'Condition')]
 
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)-$(tag)
 
@@ -61,7 +61,7 @@ steps:
 - bash: |
     echo $(query)
 - bash: |
-    echo ${{format($(query),'Column','Table', 'Condition')}}
+    echo $(TestFormat)
 - bash: |
     echo "##vso[task.setvariable variable=TestFormat]${{format(variables['AsaQuery'],'Column','Table', 'Condition')}}
 - bash: |
