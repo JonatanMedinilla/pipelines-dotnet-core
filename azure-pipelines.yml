@@ -53,11 +53,11 @@ steps:
     targetType: 'inline'
     script: |
       set -euxo pipefail
-      COLUMN='COLUMNA'
-      TABLE='TABLA'
-      CONDITION='CONDITION'
+      export COLUMN='COLUMNA'
+      export TABLE='TABLA'
+      export CONDITION='CONDITION'
       ls
-      echo "##vso[task.setvariable variable=query]\"`envsubst < ./query.txt `\""
+      echo "##vso[task.setvariable variable=query]\"`envsubst < ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
     workingDirectory: '$(Build.SourcesDirectory)'
 - bash: |
     echo $(query)
