@@ -39,6 +39,13 @@ steps:
 # before handing the body of the script to the shell.
 - bash: |
     echo my pipeline variable is $(sauce)
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: | 
+       echo $MYVAR
+  env:
+    MyVar: $(sauce)
 - script: echo $(MyRunNumber) # display MyRunNumber
 - script: echo $(Build.BuildNumber) #display Run Number
 - script: echo $(MyDate) #display My Date
