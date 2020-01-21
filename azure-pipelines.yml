@@ -40,6 +40,21 @@ steps:
 - bash: echo $(Build.Repository.ID) Repository Id
 - bash: 'echo Query: $(AsaQuery)'
 - bash: 'echo Formatted Query: $(TestFormat)'
+- task: Bash@3
+  name: 'asa_query_into_variable'
+  displayName: 'Export ASA query text into pipeline variable'
+  inputs:
+    targetType: 'inline'
+    script: |
+      set -euxo pipefail
+      echo "##vso[task.setvariable variable=AsaQuery]\"`cat ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
+    workingDirectory: '$(Build.SourcesDirectory)'
+- bash: |
+    echo $(AsaQuery)
+- bash: |
+    echo "##vso[task.setvariable variable=TestFormat]${{format(variables['AsaQuery'],'Column','Table', 'Condition')}}
+- bash: |
+    echo $(TestFormat)
 - bash: | 
     API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/$BUILD_REPOSITORY_ID/commits/$BUILD_SOURCEVERSION/changes?api-version=5.1" 
     echo $API_URL
