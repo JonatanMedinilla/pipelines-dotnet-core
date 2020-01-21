@@ -31,6 +31,14 @@ variables:
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)-$(tag)
 
 steps:
+- bash: |
+    echo "##vso[task.setvariable variable=sauce]crushed tomatoes"
+
+# Use the variable
+# "$(sauce)" is replaced by the contents of the `sauce` variable by Azure Pipelines
+# before handing the body of the script to the shell.
+- bash: |
+    echo my pipeline variable is $(sauce)
 - script: echo $(MyRunNumber) # display MyRunNumber
 - script: echo $(Build.BuildNumber) #display Run Number
 - script: echo $(MyDate) #display My Date
