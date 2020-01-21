@@ -48,7 +48,22 @@ steps:
     MyVar: $(sauce)
 - task: Bash@3
   name: 'asa_query_into_variable'
-  displayName: 'Export ASA query text into pipeline variable'
+  displayName: 'Export ASA query text into pipeline variable 1'
+  inputs:
+    targetType: 'inline'
+    script: |
+      set -euxo pipefail
+      export COLUMN='COLUMNA'
+      export TABLE='TABLA'
+      export CONDITION='CONDITION'
+      ls
+      echo "##vso[task.setvariable variable=query]\"`cat < ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
+    workingDirectory: '$(Build.SourcesDirectory)'
+- bash: |
+    echo $(query)
+- task: Bash@3
+  name: 'asa_query_into_variable'
+  displayName: 'Export ASA query text into pipeline variable 2'
   inputs:
     targetType: 'inline'
     script: |
