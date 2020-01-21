@@ -25,7 +25,7 @@ variables:
   Min: '2'
   Pat: $[counter(format('{0}.{1}', variables['Maj'], variables['Min']), 0)]
   Version2: '$(Maj).$(Min).$(Pat)-$(tag)'
-  AsaQuery: 'SELECT {0} FROM {0}-{0}-{0}-{0}'
+  query: 'SELECT {0} FROM {0}-{0}-{0}-{0}'
   TestFormat: $[format(variables['query'], 'Column','Table', 'Condition')]
 
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)-$(tag)
@@ -46,15 +46,6 @@ steps:
        echo $MYVAR
   env:
     MyVar: $(sauce)
-- script: echo $(MyRunNumber) # display MyRunNumber
-- script: echo $(Build.BuildNumber) #display Run Number
-- script: echo $(MyDate) #display My Date
-- script: echo $(Version) #display My Version
-- script: echo $(Version2) #display My Version2
-- bash: echo $(Build.SourceVersion) Commit ID
-- bash: echo $(Build.Repository.ID) Repository Id
-- bash: 'echo Query: $(AsaQuery)'
-- bash: 'echo Formatted Query: $(TestFormat)'
 - task: Bash@3
   name: 'asa_query_into_variable'
   displayName: 'Export ASA query text into pipeline variable'
