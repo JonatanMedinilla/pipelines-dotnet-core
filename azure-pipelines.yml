@@ -38,7 +38,8 @@ steps:
 - script: echo $(Version2) #display My Version2
 - bash: echo $(Build.SourceVersion) Commit ID
 - bash: echo $(Build.Repository.ID) Repository Id
-- bash: echo $(TestFormat) TestFormat
+- bash: 'echo Query: $(AsaQuery)'
+- bash: 'echo Formatted Query: $(TestFormat)'
 - bash: | 
     API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/$BUILD_REPOSITORY_ID/commits/$BUILD_SOURCEVERSION/changes?api-version=5.1" 
     echo $API_URL
