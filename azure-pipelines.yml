@@ -47,7 +47,7 @@ steps:
   env:
     MyVar: $(sauce)
 - task: Bash@3
-  name: 'asa_query_into_variable'
+  name: 'asa_query_into_variable1'
   displayName: 'Export ASA query text into pipeline variable 1'
   inputs:
     targetType: 'inline'
