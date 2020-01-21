@@ -57,7 +57,7 @@ steps:
       TABLE='TABLA'
       CONDITION='CONDITION'
       ls
-      echo "##vso[task.setvariable variable=query]\"`envsubst < ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
+      echo "##vso[task.setvariable variable=query]\"`envsubst < ./query.txt `\""
     workingDirectory: '$(Build.SourcesDirectory)'
 - bash: |
     echo $(query)
