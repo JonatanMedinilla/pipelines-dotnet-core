@@ -25,6 +25,8 @@ variables:
   Min: '2'
   Pat: $[counter(format('{0}.{1}', variables['Maj'], variables['Min']), 0)]
   Version2: '$(Maj).$(Min).$(Pat)-$(tag)'
+  AsaQuery: 'SELECT {0} FROM Table'
+  TestFormat: $[(format(variables['AsaQuery'], 'Test'))]
 
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)-$(tag)
 
@@ -36,6 +38,7 @@ steps:
 - script: echo $(Version2) #display My Version2
 - bash: echo $(Build.SourceVersion) Commit ID
 - bash: echo $(Build.Repository.ID) Repository Id
+- bash: echo $(TestFormat) TestFormat
 - bash: | 
     API_URL="$SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$SYSTEM_TEAMPROJECTID/_apis/git/repositories/$BUILD_REPOSITORY_ID/commits/$BUILD_SOURCEVERSION/changes?api-version=5.1" 
     echo $API_URL
