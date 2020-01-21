@@ -71,7 +71,7 @@ steps:
     TABLE='TABLA'
     CONDITION='CONDITION'
     echo envsubst < $(query)
-    echo "##vso[task.setvariable variable=TestFormat]${{format(variables['query'],'Column','Table', 'Condition')}}
+    echo "##vso[task.setvariable variable=TestFormat]envsubst < $(query)
 - bash: |
     echo $(TestFormat)
 - bash: | 
