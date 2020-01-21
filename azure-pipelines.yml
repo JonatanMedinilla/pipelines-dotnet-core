@@ -26,7 +26,7 @@ variables:
   Pat: $[counter(format('{0}.{1}', variables['Maj'], variables['Min']), 0)]
   Version2: '$(Maj).$(Min).$(Pat)-$(tag)'
   AsaQuery: 'SELECT {0} FROM Table'
-  TestFormat: $[(format(variables['AsaQuery'], 'Test'))]
+  TestFormat: $[format(variables['AsaQuery'], 'Test')]
 
 name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)-$(tag)
 
