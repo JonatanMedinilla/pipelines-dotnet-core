@@ -53,6 +53,9 @@ steps:
     targetType: 'inline'
     script: |
       set -euxo pipefail
+      COLUMN='COLUMNA'
+      TABLE='TABLA'
+      CONDITION='CONDITION'
       ls
       echo "##vso[task.setvariable variable=query]\"`cat ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
     workingDirectory: '$(Build.SourcesDirectory)'
