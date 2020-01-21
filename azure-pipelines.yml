@@ -58,8 +58,6 @@ steps:
       ls
       echo "##vso[task.setvariable variable=query]\"`cat ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
     workingDirectory: '$(Build.SourcesDirectory)'
-- bash: |
-    echo $(query)
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -67,6 +65,9 @@ steps:
        echo $MYVAR
   env:
     MyVar: $(query)
+- bash: |
+    echo $(query)
+
 - bash: |
     echo "##vso[task.setvariable variable=TestFormat]${{format(variables['query'],'Column','Table', 'Condition')}}
 - bash: |
