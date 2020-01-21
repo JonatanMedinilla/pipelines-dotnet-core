@@ -53,6 +53,8 @@ steps:
 - bash: |
     echo $(AsaQuery)
 - bash: |
+    echo ${{format(variables['AsaQuery'],'Column','Table', 'Condition')}}
+- bash: |
     echo "##vso[task.setvariable variable=TestFormat]${{format(variables['AsaQuery'],'Column','Table', 'Condition')}}
 - bash: |
     echo $(TestFormat)
