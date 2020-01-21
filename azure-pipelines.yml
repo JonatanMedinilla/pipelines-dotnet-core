@@ -64,8 +64,8 @@ steps:
   inputs:
     targetType: 'inline'
     script: | 
-       echo $query
-       echo ${{format($query,'Column','Table', 'Condition')}}
+       echo $MYVAR
+       echo ${{format($MYVAR,'Column','Table', 'Condition')}}
   env:
     MyVar: $(query)
 - bash: |
