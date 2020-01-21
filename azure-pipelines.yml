@@ -60,13 +60,16 @@ steps:
     workingDirectory: '$(Build.SourcesDirectory)'
 - bash: |
     echo $(query)
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: | 
+       echo $query
+       echo ${{format($query,'Column','Table', 'Condition')}}
+  env:
+    MyVar: $(query)
 - bash: |
-    echo $(TestFormat)
-- bash: |
-    var='"$(query)".format("column", "table", "condition")'
-    python3 -c "print($var)"
-#- bash: |
-#    echo "##vso[task.setvariable variable=TestFormat]${{format(variables['AsaQuery'],'Column','Table', 'Condition')}}
+    echo "##vso[task.setvariable variable=TestFormat]${{format(variables['query'],'Column','Table', 'Condition')}}
 - bash: |
     echo $(TestFormat)
 - bash: | 
