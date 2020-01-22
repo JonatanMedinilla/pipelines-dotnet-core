@@ -64,8 +64,8 @@ steps:
 - bash: |
     echo $(query)
 - task: Bash@3
-  name: 'asa_query_into_variable1'
-  displayName: 'Export ASA query text into pipeline variable 1'
+  name: 'asa_query_into_variable2'
+  displayName: 'Export ASA query text into pipeline variable 2'
   inputs:
     targetType: 'inline'
     script: |
