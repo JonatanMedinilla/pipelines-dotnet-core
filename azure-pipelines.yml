@@ -58,7 +58,6 @@ steps:
       export CONDITION='CONDITION'
       envsubst < ./query.txt | awk '{printf "%s\\\\n", $0}' > formattedQuery.txt
       ls
-      echo $MYVAR
       echo "##vso[task.setvariable variable=query]\"`cat ./formattedQuery.txt | awk '{printf "%s\\\\n", $0}'`\""
     workingDirectory: '$(Build.SourcesDirectory)'
 - bash: |
