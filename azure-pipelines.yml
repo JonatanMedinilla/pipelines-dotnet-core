@@ -56,9 +56,8 @@ steps:
       export COLUMN='COLUMNA'
       export TABLE='TABLA'
       export CONDITION='CONDITION'
-      MYVAR=''
+      MYVAR=$(envsubst < ./query.txt | awk '{printf "%s\\\\n", $0}')
       ls
-      envsubst < ./query.txt | awk '{printf "%s\\\\n", $0}' > '$MYVAR'
       echo $MYVAR
       echo "##vso[task.setvariable variable=query]\"`cat < ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
     workingDirectory: '$(Build.SourcesDirectory)'
