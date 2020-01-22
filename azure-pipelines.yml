@@ -56,10 +56,27 @@ steps:
       export COLUMN='COLUMNA'
       export TABLE='TABLA'
       export CONDITION='CONDITION'
+      envsubst < ./query.txt | awk '{printf "%s\\\\n", $0}') > formattedQuery.txt
+      ls
+      echo $MYVAR
+      echo "##vso[task.setvariable variable=query]\"`cat ./formattedQuery.txt | awk '{printf "%s\\\\n", $0}'`\""
+    workingDirectory: '$(Build.SourcesDirectory)'
+- bash: |
+    echo $(query)
+- task: Bash@3
+  name: 'asa_query_into_variable1'
+  displayName: 'Export ASA query text into pipeline variable 1'
+  inputs:
+    targetType: 'inline'
+    script: |
+      set -euxo pipefail
+      export COLUMN='COLUMNA'
+      export TABLE='TABLA'
+      export CONDITION='CONDITION'
       MYVAR=$(envsubst < ./query.txt | awk '{printf "%s\\\\n", $0}')
       ls
       echo $MYVAR
-      echo "##vso[task.setvariable variable=query]\"`cat < ./query.txt | awk '{printf "%s\\\\n", $0}'`\""
+      echo "##vso[task.setvariable variable=query]$MYVAR"
     workingDirectory: '$(Build.SourcesDirectory)'
 - bash: |
     echo $(query)
