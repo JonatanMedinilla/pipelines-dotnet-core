@@ -23,12 +23,10 @@ variables:
   Version: '$(Major).$(Minor).$(Patch)-$(tag)'
   Maj: '1'
   Min: '2'
-  Pat: $[counter(format('{0}.{1}', variables['Maj'], variables['Min']), 0)]
+  Pat: '0'
   Version2: '$(Maj).$(Min).$(Pat)-$(tag)'
   query: 'SELECT {0} FROM {0}-{0}-{0}-{0}'
   TestFormat: $[format(variables['query'], 'Column','Table', 'Condition')]
-
-name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)-$(tag)
 
 steps:
 - bash: |
@@ -126,5 +124,11 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'prd'
 
-
-
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $commitId= "$env:BUILD_SOURCEVERSION"
+      
+      Write-Host ("##vso[pat]$commitId")
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)
