@@ -131,4 +131,4 @@ steps:
       $commitId= "$env:BUILD_SOURCEVERSION"
       
       Write-Host ("##vso[pat]$commitId")
-name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Pat)
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd).$(Maj).$(Min).$(Build.SourceVersion)
