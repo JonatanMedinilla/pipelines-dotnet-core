@@ -36,7 +36,7 @@ steps:
 # "$(sauce)" is replaced by the contents of the `sauce` variable by Azure Pipelines
 # before handing the body of the script to the shell.
 - bash: |
-    echo my pipeline variable is $(sauce)
+    echo my pipeline variable is $(Pat)
 - task: Bash@3
   inputs:
     targetType: 'inline'
