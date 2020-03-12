@@ -38,13 +38,8 @@ steps:
 - bash: |
     echo my pipeline variable is $(Pat)
 - task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: | 
-       echo $MYVAR
-  env:
-    MyVar: $(sauce)
-- task: Bash@3
+  name: 'GenerateBuildNumber'
+  displayName: 'Generate Build Number'
   inputs:
     targetType: 'inline'
     script: | 
@@ -53,6 +48,14 @@ steps:
        buildNumber="$MAJ.$MIN.$MIN.$shortCommitHash"
        echo $buildNumber
        echo "##vso[task.setvariable variable=BuildNumber]buildNumber"
+
+- task: Bash@3
+  name: 'DisplayBuildNumber'
+  displayName: 'DisplayBuildNumber'
+  inputs:
+    targetType: 'inline'
+    script: | 
+       echo $BUILD_NUMBER
 
 - task: Bash@3
   name: 'asa_query_into_variable1'
