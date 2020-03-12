@@ -51,6 +51,7 @@ steps:
        commitHash=$BUILD_SOURCEVERSION
        shortCommitHash="${commitHash:0:8}"
        buildNumber="$MAJ.$MIN.$MIN.$shortCommitHash"
+       echo buildNumber
        echo "##vso[task.setvariable variable=BuildNumber]buildNumber"
 
 - task: Bash@3
