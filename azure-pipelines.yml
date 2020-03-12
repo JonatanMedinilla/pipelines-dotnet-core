@@ -56,7 +56,7 @@ steps:
     targetType: 'inline'
     script: | 
        echo $BUILD_NUMBER
-
+       echo $BUILDNUMBER
 - task: Bash@3
   name: 'asa_query_into_variable1'
   displayName: 'Export ASA query text into pipeline variable 1'
