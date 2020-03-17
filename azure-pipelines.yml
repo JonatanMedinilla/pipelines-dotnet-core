@@ -13,6 +13,7 @@ trigger:
      - release-pipeline.yaml
   
   
+  
 pool: 
   vmImage: 'vs2017-win2016'
 
