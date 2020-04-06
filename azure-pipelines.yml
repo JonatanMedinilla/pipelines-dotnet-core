@@ -33,7 +33,8 @@ variables:
 steps:
 - bash: |
     echo "##vso[task.setvariable variable=sauce]crushed tomatoes"
-
+- task: UseNode@1
+- script: console.log(process.env.sauce)
 # Use the variable
 # "$(sauce)" is replaced by the contents of the `sauce` variable by Azure Pipelines
 # before handing the body of the script to the shell.
